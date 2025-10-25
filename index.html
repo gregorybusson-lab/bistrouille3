@@ -200,12 +200,12 @@
           </div>
           <div class="card">
             <p><strong>Sinon, le mieux, c’est qu’on se tienne au courant !</strong></p>
+            <p>J'accepte de recevoir des nouvelles régulières du Bistrouille.</p>
             <form id="events-sub">
               <div class="row">
                 <label>Votre email<input type="email" name="email" placeholder="vous@exemple.com" required></label>
-                <label class="consent"><input type="checkbox" required style="margin-top:3px"> <span>J’accepte de recevoir des nouvelles régulières du Bistrouille.</span></label>
               </div>
-              <button class="btn btn--primary" type="submit">M’abonner</button>
+              <button class="btn btn--primary" type="submit" style="text-align:center">M’abonner</button>
               <p id="events-feedback" class="muted" aria-live="polite"></p>
             </form>
           </div>
@@ -222,8 +222,6 @@
             <div class="row"><label>Date<input type="date" name="date" required></label><label>Heure<input type="time" name="time" required></label></div>
             <label>Nombre de personnes<select name="people" required><option value="" disabled selected>—</option><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option><option>6</option><option>7+</option></select></label>
             <label>Message<textarea rows="3" name="msg" placeholder="Allergies, préférences… (optionnel)"></textarea></label>
-            <label class="consent"><input type="checkbox" name="optin" style="margin-top:3px"> <span>J’en profite pour m’abonner à la newsletter du Bistrouille, pour être certain d’avoir faim régulièrement.</span></label>
-            <button class="btn btn--primary" type="submit">Confirmer ma réservation</button>
             <p id="resa-feedback" class="muted" aria-live="polite"></p>
           </form>
         </div>
