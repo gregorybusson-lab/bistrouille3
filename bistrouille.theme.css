@@ -179,7 +179,7 @@ h1,h2,h3,h4,.brand__title{font-family:'Playfair Display',Georgia,serif}
   left:50%;
   width:100vw;
   transform:translateX(-50%);
-  min-height:100%;
+  min-height:100vh;
   background:url('https://lebistrouille.fr/images/fond1.jpg') center/cover no-repeat;
   filter:saturate(105%);
   z-index:0;
