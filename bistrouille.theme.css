@@ -313,7 +313,7 @@ input:focus,select:focus,textarea:focus{border-color:var(--brand);box-shadow:0 0
 @media (max-width:900px){.footer__cols{grid-template-columns:1fr}}
 .muted{color:var(--muted);font-size:14px}
 .footer-links a{margin-right:12px}
-.footer .iconbtn{background:#fff;border-color:rgba(0,0,0,.10)}
+.footer .iconbtn{background:#fff;border-color:rgba(0,0,0,.10);color:var(--ink)}
 .footer .iconbtn:hover{transform:translateY(-2px);box-shadow:0 12px 26px rgba(0,0,0,.12)}
 
 /* REVEAL (utilisé avec l’IO dans ton JS) */
