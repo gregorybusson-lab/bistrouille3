@@ -6,32 +6,29 @@
   /* Header scrolled + parallaxe hero (fluide) */
   const header = $('.header');
   const hero = $('.hero__media');
-  const parallaxDisabled = true;
+  const heroWrap = $('.hero__wrap');
   const mediaMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
-  const mediaDesktop = window.matchMedia('(min-width: 900px)');
   let ticking = false;
-  let bgIsFixed = false;
-
-  function refreshParallaxMode(){
-    if(!hero) return;
-    bgIsFixed = window.getComputedStyle(hero).backgroundAttachment === 'fixed';
-    hero.style.removeProperty('--hero-parallax');
-  }
-
-  mediaMotion.addEventListener?.('change', refreshParallaxMode);
-  mediaDesktop.addEventListener?.('change', refreshParallaxMode);
-  mediaMotion.addListener?.(refreshParallaxMode);
-  mediaDesktop.addListener?.(refreshParallaxMode);
-  window.addEventListener('resize', refreshParallaxMode);
-  refreshParallaxMode();
 
   function onScroll(){
     if(!ticking){
       window.requestAnimationFrame(()=>{
         if(header) header.classList.toggle('scrolled', window.scrollY>40);
-        if(hero && !bgIsFixed && !parallaxDisabled){
-          hero.style.removeProperty('--hero-parallax');
+        
+        // Effet parallax sur le hero
+        if(hero && heroWrap && !mediaMotion.matches){
+          const scrolled = window.scrollY;
+          const heroHeight = hero.offsetHeight;
+          
+          // Parallax seulement tant qu'on est dans le hero
+          if(scrolled < heroHeight){
+            // Le background bouge plus lentement (0.5x) que le scroll
+            hero.style.transform = `translateY(${scrolled * 0.5}px)`;
+            // Le contenu bouge légèrement plus vite (1.15x) pour créer la profondeur
+            heroWrap.style.transform = `translateY(${scrolled * -0.15}px)`;
+          }
         }
+        
         ticking = false;
       });
       ticking = true;
