@@ -334,7 +334,7 @@ input:focus,select:focus,textarea:focus{border-color:var(--brand);box-shadow:0 0
   .btn{padding:11px 14px}
   .hero{margin-top:0}
   .hero__wrap{border-radius:18px}
-  .hero__media{min-height:68vh}
+  .hero__media{min-height:100vh}
   .hero__content{padding:20px}
   .hero__ctas .btn{width:100%;justify-content:center}
   .downwrap{margin-top:10px}
