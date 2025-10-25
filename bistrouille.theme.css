@@ -290,7 +290,7 @@ section{padding:56px 0;scroll-margin-top:calc(var(--header-h) + 24px)}
 .post__img{aspect-ratio:1/1;object-fit:cover}
 .post__meta{display:flex;align-items:center;justify-content:space-between;padding:10px 12px}
 .post__tag{font-weight:900;font-size:12px;color:var(--brand)}
-.snapwidget-widget{margin-bottom:-20px}
+.snapwidget-widget{margin-bottom:-35px}
 
 /* GALERIE */
 .gallery__controls{display:flex;justify-content:space-between;margin-bottom:8px}
