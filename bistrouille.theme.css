@@ -351,7 +351,7 @@ input:focus,select:focus,textarea:focus{border-color:var(--brand);box-shadow:0 0
   .presentation__chips{grid-template-columns:1fr}
   .presentation__actions{grid-template-columns:1fr}
   .presentation__logo img{width:140px}
-  .presentation__media{min-height:400px}
+  .presentation__media{min-height:500px}
 }
 
 /* Sécurité overflow globale */
