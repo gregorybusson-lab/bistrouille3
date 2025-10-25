@@ -261,13 +261,15 @@ section{padding:56px 0;scroll-margin-top:calc(var(--header-h) + 24px)}
 .presentation__media:hover img{transform:scale(1.05)}
 
 /* PROMO Formule */
-.promo{display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:200px;padding:40px 20px;border-radius:16px;background-image:url('https://lebistrouille.fr/images/la-formule-bistrouille.jpg');background-size:cover;background-position:center;color:#fff;text-shadow:0 2px 4px rgba(0,0,0,.7);position:relative}
+.promo{display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:220px;padding:40px 20px;border-radius:16px;background-image:url('https://lebistrouille.fr/images/la-formule-bistrouille.jpg');background-size:cover;background-position:center;color:#fff;position:relative;overflow:hidden}
+.promo::before{content:"";position:absolute;inset:0;background:rgba(0,0,0,.25);z-index:0}
+.promo>*{position:relative;z-index:1}
 .promo__thumb{width:200px;height:150px;border-radius:10px;overflow:hidden;position:relative}
 .promo__overlay{position:absolute;top:0;left:0;right:0;bottom:0;display:flex;flex-direction:column;align-items:center;justify-content:center;color:#fff;text-shadow:0 2px 4px rgba(0,0,0,.7);background:rgba(0,0,0,.3)}
 .promo h2{font-size:2.5rem;font-weight:900;text-transform:uppercase;margin:0 0 10px;text-align:center}
-.promo p{font-size:1.2rem;margin:0 0 20px;text-align:center}
-.promo__badge{background:var(--brand);color:#fff;padding:10px 16px;border-radius:999px;font-weight:900}
-.promo-title{display:block;text-align:center;font-size:3rem;font-weight:900;margin-bottom:10px;font-family:"Playfair Display",Georgia,serif;color:#fff;-webkit-text-stroke:1px #000;text-shadow:0 0 2px #000}
+.promo p{font-size:clamp(16px,1.6vw,20px);margin:0 0 20px;text-align:center;text-shadow:0 12px 24px rgba(0,0,0,.6), 0 1px 0 rgba(0,0,0,.4);font-weight:500;max-width:70ch}
+.promo__badge{background:var(--brand);color:#fff;padding:12px 20px;border-radius:999px;font-weight:900;font-size:1.3rem;box-shadow:0 8px 20px rgba(122,15,31,.4)}
+.promo-title{display:block;text-align:center;font-size:clamp(28px,3.2vw,38px);font-weight:900;margin-bottom:12px;font-family:"Playfair Display",Georgia,serif;color:#fff;text-shadow:0 12px 24px rgba(0,0,0,.6), 0 1px 0 rgba(0,0,0,.4);line-height:1.1}
 /* CARTE */
 .menu-item{display:grid;grid-template-columns:120px 1fr auto;gap:14px;align-items:start;padding:12px 0;border-bottom:1px dashed rgba(0,0,0,.08);height:190px}
 .menu-item__thumb{width:120px;height:116px;border-radius:12px;overflow:hidden;background:#ddd}
