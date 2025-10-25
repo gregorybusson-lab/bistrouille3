@@ -3,32 +3,35 @@
   const $ = (s,ctx=document)=>ctx.querySelector(s);
   const $$ = (s,ctx=document)=>Array.from(ctx.querySelectorAll(s));
 
-  /* Header scrolled + parallaxe hero subtil */
+  /* Header scrolled + parallaxe hero (fluide) */
   const header = $('.header');
   const hero = $('.hero__media');
+  const parallaxDisabled = true;
   const mediaMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+  const mediaDesktop = window.matchMedia('(min-width: 900px)');
   let ticking = false;
+  let bgIsFixed = false;
+
+  function refreshParallaxMode(){
+    if(!hero) return;
+    bgIsFixed = window.getComputedStyle(hero).backgroundAttachment === 'fixed';
+    hero.style.removeProperty('--hero-parallax');
+  }
+
+  mediaMotion.addEventListener?.('change', refreshParallaxMode);
+  mediaDesktop.addEventListener?.('change', refreshParallaxMode);
+  mediaMotion.addListener?.(refreshParallaxMode);
+  mediaDesktop.addListener?.(refreshParallaxMode);
+  window.addEventListener('resize', refreshParallaxMode);
+  refreshParallaxMode();
 
   function onScroll(){
     if(!ticking){
       window.requestAnimationFrame(()=>{
         if(header) header.classList.toggle('scrolled', window.scrollY>40);
-        
-        // Parallax très subtil sur le background uniquement
-        if(hero && !mediaMotion.matches){
-          const scrolled = window.scrollY;
-          const heroHeight = hero.offsetHeight;
-          
-          // Effet seulement dans le hero
-          if(scrolled < heroHeight){
-            // Très léger déplacement du background (0.3x au lieu de 0.5x)
-            const offset = scrolled * 0.3;
-            hero.style.transform = `translateY(${offset}px)`;
-          } else {
-            hero.style.transform = '';
-          }
+        if(hero && !bgIsFixed && !parallaxDisabled){
+          hero.style.removeProperty('--hero-parallax');
         }
-        
         ticking = false;
       });
       ticking = true;
