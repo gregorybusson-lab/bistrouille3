@@ -199,12 +199,15 @@
           </div>
           <div class="card">
             <p><strong>Sinon, le mieux, c’est qu’on se tienne au courant !</strong></p>
-            <p>J'accepte de recevoir des nouvelles régulières du Bistrouille.</p>
             <form id="events-sub">
               <div style="display:flex; gap:12px; align-items:flex-end;">
                 <label style="flex:1">Votre email<input type="email" name="email" placeholder="vous@exemple.com" required></label>
                 <button class="btn btn--primary" type="submit" style="text-align:center">M’abonner</button>
               </div>
+              <label style="display:flex; align-items:center; gap:10px; cursor:pointer; margin-top:12px">
+                <input type="checkbox" name="newsletter" checked>
+                <span>J'accepte de recevoir des nouvelles régulières du Bistrouille.</span>
+              </label>
               <p id="events-feedback" class="muted" aria-live="polite"></p>
             </form>
           </div>
