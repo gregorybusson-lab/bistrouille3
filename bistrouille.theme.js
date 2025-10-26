@@ -149,23 +149,21 @@
         body: JSON.stringify(formData)
       });
       
-      // Si newsletter cochée, envoyer aussi à la newsletter
-      if(newsletterChecked){
-        await fetch(NEWSLETTER_SCRIPT_URL, {
-          method: 'POST',
-          mode: 'no-cors',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({
-            name: formData.name,
-            tel: formData.tel,
-            email: formData.email,
-            status: 'Opt-in',
-            source: 'Réservation'
-          })
-        });
-      }
+      // Toujours envoyer le statut newsletter (Opt-in si coché, Opt-out si décoché)
+      await fetch(NEWSLETTER_SCRIPT_URL, {
+        method: 'POST',
+        mode: 'no-cors',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          name: formData.name,
+          tel: formData.tel,
+          email: formData.email,
+          status: newsletterChecked ? 'Opt-in' : 'Opt-out',
+          source: 'Réservation'
+        })
+      });
       
       // Succès
       rfb.textContent = 'Merci ! Votre demande a bien été envoyée. Nous vous recontactons pour confirmer.';
