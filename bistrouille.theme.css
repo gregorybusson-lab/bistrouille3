@@ -374,3 +374,46 @@ html,body{overflow-x:hidden}
 /* (Conservé pour compatibilité, le look est géré plus haut) */
 @media (max-width:900px){.hero{padding-top:calc(var(--header-h) + var(--safe-top) + 32px)}}
 
+/* === Toast notification (pop-in pour messages) === */
+.toast {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  padding: 18px 24px;
+  border-radius: 12px;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.2);
+  z-index: 10000;
+  min-width: 300px;
+  max-width: 500px;
+  opacity: 0;
+  transform: translateY(-20px);
+  transition: opacity 0.4s ease, transform 0.4s ease;
+  pointer-events: none;
+  font-size: 15px;
+  line-height: 1.5;
+}
+
+.toast.show {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+.toast.success {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
+.toast.error {
+  background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+}
+
+@media (max-width: 768px) {
+  .toast {
+    top: 10px;
+    right: 10px;
+    left: 10px;
+    min-width: auto;
+  }
+}

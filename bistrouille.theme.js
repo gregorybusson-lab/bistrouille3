@@ -106,6 +106,28 @@
   const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxQP0Hb2MShdNtR0YhyhLhKnnQP9vo3aVcEewYegCenA8WyGUn85vHgHAp5-s9FBTOE/exec';
   const NEWSLETTER_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwr5Puklcca54HTHcFoykH3UWS2Dw3IiBWM33ZZsHl7K-g0jTj4QU5gvzD7a1InLLfVjg/exec';
   
+  // Fonction pour afficher la pop-in toast
+  function showToast(message, type = 'success') {
+    // Supprimer l'ancien toast s'il existe
+    const oldToast = $('.toast');
+    if(oldToast) oldToast.remove();
+    
+    // Créer le nouveau toast
+    const toast = document.createElement('div');
+    toast.className = `toast ${type}`;
+    toast.textContent = message;
+    document.body.appendChild(toast);
+    
+    // Afficher avec animation
+    setTimeout(() => toast.classList.add('show'), 10);
+    
+    // Masquer et supprimer après 4 secondes
+    setTimeout(() => {
+      toast.classList.remove('show');
+      setTimeout(() => toast.remove(), 400);
+    }, 4000);
+  }
+  
   resa?.addEventListener('submit', async (e)=>{
     e.preventDefault();
     let ok = true; rfb.textContent = '';
@@ -117,12 +139,12 @@
     });
     
     if(!ok){ 
-      rfb.textContent = 'Merci de compléter les champs obligatoires.'; 
+      showToast('Merci de compléter les champs obligatoires.', 'error');
       return; 
     }
     
     // Afficher message de chargement
-    rfb.textContent = 'Envoi en cours...';
+    showToast('Envoi en cours...', 'success');
     
     // Récupérer les données du formulaire
     const formData = {
@@ -166,11 +188,11 @@
       });
       
       // Succès
-      rfb.textContent = 'Merci ! Votre demande a bien été envoyée. Nous vous recontactons pour confirmer.';
+      showToast('Merci ! Votre demande a bien été envoyée. Nous vous recontactons pour confirmer.', 'success');
       resa.reset();
       
     } catch(error) {
-      rfb.textContent = 'Erreur lors de l\'envoi. Veuillez réessayer ou nous appeler au 01 74 92 52 46.';
+      showToast('Erreur lors de l\'envoi. Veuillez réessayer ou nous appeler au 01 74 92 52 46.', 'error');
       console.error('Erreur:', error);
     }
   });
@@ -182,14 +204,14 @@
     const emailInput = es.querySelector('input[type=email]');
     
     if(!emailInput || !emailInput.value){ 
-      efb.textContent = 'Merci d\'indiquer votre email.'; 
+      showToast('Merci d\'indiquer votre email.', 'error');
       return; 
     }
     
     const newsletterCheckbox = es.querySelector('[name="newsletter"]');
     const newsletterChecked = newsletterCheckbox ? newsletterCheckbox.checked : true;
     
-    efb.textContent = newsletterChecked ? 'Inscription en cours...' : 'Désinscription en cours...';
+    showToast(newsletterChecked ? 'Inscription en cours...' : 'Désinscription en cours...', 'success');
     
     try {
       await fetch(NEWSLETTER_SCRIPT_URL, {
@@ -207,13 +229,16 @@
         })
       });
       
-      efb.textContent = newsletterChecked 
-        ? 'Merci ! Vous êtes inscrit à notre newsletter.' 
-        : 'Vous êtes désinscrit de notre newsletter.';
+      showToast(
+        newsletterChecked 
+          ? 'Merci ! Vous êtes inscrit à notre newsletter.' 
+          : 'Vous êtes désinscrit de notre newsletter.',
+        'success'
+      );
       es.reset();
       
     } catch(error) {
-      efb.textContent = 'Erreur lors de l\'inscription. Veuillez réessayer.';
+      showToast('Erreur lors de l\'inscription. Veuillez réessayer.', 'error');
       console.error('Erreur:', error);
     }
   });
