@@ -104,7 +104,7 @@
   /* Formulaires (feedback) */
   const resa = $('#resa-form'); const rfb = $('#resa-feedback');
   const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxN_Ektrnt04rfP5Gl_i-AkY3ZXjwFdGZ12WXfCdaVk9MDrfqd_JRp1XkUZc-ru1KRi/exec';
-  const NEWSLETTER_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbw9BR2pMKIqBlFKtzwCXie2GT4Ge0000np0SnAY04Y0uP-9kGBNWtLbkoeN0Ag0ilMpEA/exec';
+  const NEWSLETTER_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwr5Puklcca54HTHcFoykH3UWS2Dw3IiBWM33ZZsHl7K-g0jTj4QU5gvzD7a1InLLfVjg/exec';
   
   resa?.addEventListener('submit', async (e)=>{
     e.preventDefault();
