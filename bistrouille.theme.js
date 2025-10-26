@@ -186,7 +186,10 @@
       return; 
     }
     
-    efb.textContent = 'Inscription en cours...';
+    const newsletterCheckbox = es.querySelector('[name="newsletter"]');
+    const newsletterChecked = newsletterCheckbox ? newsletterCheckbox.checked : true;
+    
+    efb.textContent = newsletterChecked ? 'Inscription en cours...' : 'Désinscription en cours...';
     
     try {
       await fetch(NEWSLETTER_SCRIPT_URL, {
@@ -199,12 +202,14 @@
           name: '',
           tel: '',
           email: emailInput.value,
-          status: 'Opt-in',
+          status: newsletterChecked ? 'Opt-in' : 'Opt-out',
           source: 'Newsletter'
         })
       });
       
-      efb.textContent = 'Merci ! Vous êtes inscrit à notre newsletter.';
+      efb.textContent = newsletterChecked 
+        ? 'Merci ! Vous êtes inscrit à notre newsletter.' 
+        : 'Vous êtes désinscrit de notre newsletter.';
       es.reset();
       
     } catch(error) {
