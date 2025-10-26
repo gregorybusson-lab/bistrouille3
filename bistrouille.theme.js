@@ -103,15 +103,56 @@
 
   /* Formulaires (feedback) */
   const resa = $('#resa-form'); const rfb = $('#resa-feedback');
-  resa?.addEventListener('submit', (e)=>{
+  const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxN_Ektrnt04rfP5Gl_i-AkY3ZXjwFdGZ12WXfCdaVk9MDrfqd_JRp1XkUZc-ru1KRi/exec';
+  
+  resa?.addEventListener('submit', async (e)=>{
     e.preventDefault();
     let ok = true; rfb.textContent = '';
+    
+    // Validation des champs
     $$('#resa-form input[required], #resa-form select[required]').forEach(el=>{
-      el.classList.remove('error'); if(!el.value){ ok=false; el.classList.add('error'); }
+      el.classList.remove('error'); 
+      if(!el.value){ ok=false; el.classList.add('error'); }
     });
-    if(!ok){ rfb.textContent = 'Merci de compléter les champs obligatoires.'; return; }
-    rfb.textContent = 'Merci ! Votre demande a bien été envoyée. Nous vous recontactons pour confirmer.';
-    resa.reset();
+    
+    if(!ok){ 
+      rfb.textContent = 'Merci de compléter les champs obligatoires.'; 
+      return; 
+    }
+    
+    // Afficher message de chargement
+    rfb.textContent = 'Envoi en cours...';
+    
+    // Récupérer les données du formulaire
+    const formData = {
+      name: resa.querySelector('[name="name"]').value,
+      tel: resa.querySelector('[name="tel"]').value,
+      email: resa.querySelector('[name="email"]').value,
+      date: resa.querySelector('[name="date"]').value,
+      time: resa.querySelector('[name="time"]').value,
+      people: resa.querySelector('[name="people"]').value,
+      msg: resa.querySelector('[name="msg"]').value || ''
+    };
+    
+    try {
+      // Envoyer à Google Sheets
+      const response = await fetch(GOOGLE_SCRIPT_URL, {
+        method: 'POST',
+        mode: 'no-cors',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData)
+      });
+      
+      // Succès (no-cors ne permet pas de lire la réponse mais si pas d'erreur = succès)
+      rfb.textContent = 'Merci ! Votre demande a bien été envoyée. Nous vous recontactons pour confirmer.';
+      resa.reset();
+      
+    } catch(error) {
+      rfb.textContent = 'Erreur lors de l\'envoi. Veuillez réessayer ou nous appeler au 01 74 92 52 46.';
+      console.error('Erreur:', error);
+    }
   });
 
   const es = $('#events-sub'); const efb = $('#events-feedback');
