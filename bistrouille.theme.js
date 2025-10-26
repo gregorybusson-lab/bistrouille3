@@ -104,6 +104,7 @@
   /* Formulaires (feedback) */
   const resa = $('#resa-form'); const rfb = $('#resa-feedback');
   const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxN_Ektrnt04rfP5Gl_i-AkY3ZXjwFdGZ12WXfCdaVk9MDrfqd_JRp1XkUZc-ru1KRi/exec';
+  const NEWSLETTER_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbw9BR2pMKIqBlFKtzwCXie2GT4Ge0000np0SnAY04Y0uP-9kGBNWtLbkoeN0Ag0ilMpEA/exec';
   
   resa?.addEventListener('submit', async (e)=>{
     e.preventDefault();
@@ -134,9 +135,12 @@
       msg: resa.querySelector('[name="msg"]').value || ''
     };
     
+    const newsletterCheckbox = resa.querySelector('[name="newsletter"]');
+    const newsletterChecked = newsletterCheckbox ? newsletterCheckbox.checked : false;
+    
     try {
-      // Envoyer à Google Sheets
-      const response = await fetch(GOOGLE_SCRIPT_URL, {
+      // Envoyer la réservation à Google Sheets
+      await fetch(GOOGLE_SCRIPT_URL, {
         method: 'POST',
         mode: 'no-cors',
         headers: {
@@ -145,7 +149,25 @@
         body: JSON.stringify(formData)
       });
       
-      // Succès (no-cors ne permet pas de lire la réponse mais si pas d'erreur = succès)
+      // Si newsletter cochée, envoyer aussi à la newsletter
+      if(newsletterChecked){
+        await fetch(NEWSLETTER_SCRIPT_URL, {
+          method: 'POST',
+          mode: 'no-cors',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            name: formData.name,
+            tel: formData.tel,
+            email: formData.email,
+            status: 'Opt-in',
+            source: 'Réservation'
+          })
+        });
+      }
+      
+      // Succès
       rfb.textContent = 'Merci ! Votre demande a bien été envoyée. Nous vous recontactons pour confirmer.';
       resa.reset();
       
@@ -155,12 +177,41 @@
     }
   });
 
+  // Formulaire newsletter
   const es = $('#events-sub'); const efb = $('#events-feedback');
-  es?.addEventListener('submit', (e)=>{
+  es?.addEventListener('submit', async (e)=>{
     e.preventDefault();
-    const email = es.querySelector('input[type=email]');
-    const consent = es.querySelector('input[type=checkbox]');
-    if(!email.value || !consent.checked){ efb.textContent = 'Merci d’indiquer votre email et de cocher la case.'; return; }
-    efb.textContent = 'Merci ! Vous êtes sur la liste.'; es.reset();
+    const emailInput = es.querySelector('input[type=email]');
+    
+    if(!emailInput || !emailInput.value){ 
+      efb.textContent = 'Merci d\'indiquer votre email.'; 
+      return; 
+    }
+    
+    efb.textContent = 'Inscription en cours...';
+    
+    try {
+      await fetch(NEWSLETTER_SCRIPT_URL, {
+        method: 'POST',
+        mode: 'no-cors',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          name: '',
+          tel: '',
+          email: emailInput.value,
+          status: 'Opt-in',
+          source: 'Newsletter'
+        })
+      });
+      
+      efb.textContent = 'Merci ! Vous êtes inscrit à notre newsletter.';
+      es.reset();
+      
+    } catch(error) {
+      efb.textContent = 'Erreur lors de l\'inscription. Veuillez réessayer.';
+      console.error('Erreur:', error);
+    }
   });
 })();
