@@ -247,7 +247,8 @@ section{padding:56px 0;scroll-margin-top:calc(var(--header-h) + 24px)}
 .presentation__content{display:flex;flex-direction:column;gap:18px}
 .presentation__logo{display:flex;justify-content:center;align-items:center;margin-top:4px}
 .presentation__logo img{width:160px;max-width:70%;filter:drop-shadow(0 12px 24px rgba(0,0,0,.25))}
-.presentation__chips{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:4px}
+.presentation__chips{display:grid;grid-template-columns:1fr;gap:12px;margin-top:4px}
+.presentation__chips .chip{display:flex;width:100%}
 .presentation__actions{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px;margin-top:6px}
 .presentation__actions .btn--ghost{color:var(--ink);background:rgba(28,18,15,.06);border:1px solid rgba(28,18,15,.14);box-shadow:none}
 .presentation__actions .btn--ghost:hover{background:rgba(28,18,15,.1);box-shadow:0 10px 24px rgba(0,0,0,.08)}
