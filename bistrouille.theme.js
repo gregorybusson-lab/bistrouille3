@@ -103,7 +103,7 @@
 
   /* Formulaires (feedback) */
   const resa = $('#resa-form'); const rfb = $('#resa-feedback');
-  const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxN_Ektrnt04rfP5Gl_i-AkY3ZXjwFdGZ12WXfCdaVk9MDrfqd_JRp1XkUZc-ru1KRi/exec';
+  const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxQP0Hb2MShdNtR0YhyhLhKnnQP9vo3aVcEewYegCenA8WyGUn85vHgHAp5-s9FBTOE/exec';
   const NEWSLETTER_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwr5Puklcca54HTHcFoykH3UWS2Dw3IiBWM33ZZsHl7K-g0jTj4QU5gvzD7a1InLLfVjg/exec';
   
   resa?.addEventListener('submit', async (e)=>{
