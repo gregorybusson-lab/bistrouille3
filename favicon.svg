@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 700">
+  <!-- Background transparent -->
+  <rect width="700" height="700" fill="none"/>
+  
+  <!-- Soleil coeur -->
+  <g transform="translate(350,350)">
+    <!-- Rayons -->
+    <g fill="#8B432F">
+      <rect x="-25" y="-160" width="50" height="80" rx="25"/>
+      <rect x="-25" y="-160" width="50" height="80" rx="25" transform="rotate(30)"/>
+      <rect x="-25" y="-160" width="50" height="80" rx="25" transform="rotate(60)"/>
+      <rect x="-25" y="-160" width="50" height="80" rx="25" transform="rotate(90)"/>
+      <rect x="-25" y="-160" width="50" height="80" rx="25" transform="rotate(120)"/>
+      <rect x="-25" y="-160" width="50" height="80" rx="25" transform="rotate(150)"/>
+      <rect x="-25" y="-160" width="50" height="80" rx="25" transform="rotate(180)"/>
+      <rect x="-25" y="-160" width="50" height="80" rx="25" transform="rotate(210)"/>
+      <rect x="-25" y="-160" width="50" height="80" rx="25" transform="rotate(240)"/>
+      <rect x="-25" y="-160" width="50" height="80" rx="25" transform="rotate(270)"/>
+      <rect x="-25" y="-160" width="50" height="80" rx="25" transform="rotate(300)"/>
+      <rect x="-25" y="-160" width="50" height="80" rx="25" transform="rotate(330)"/>
+    </g>
+    
+    <!-- Cercle central -->
+    <circle r="95" fill="#8B432F"/>
+    
+    <!-- Coeur blanc -->
+    <path d="M 0,-30 C -20,-30 -35,-15 -35,10 C -35,40 0,55 0,55 C 0,55 35,40 35,10 C 35,-15 20,-30 0,-30 Z" fill="#FFF"/>
+  </g>
+</svg>
