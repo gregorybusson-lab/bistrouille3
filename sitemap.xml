@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  
+  <!-- Page principale -->
+  <url>
+    <loc>https://lebistrouille.fr/</loc>
+    <lastmod>2025-10-28</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+  
+  <!-- Section La carte -->
+  <url>
+    <loc>https://lebistrouille.fr/#la-carte</loc>
+    <lastmod>2025-10-28</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  
+  <!-- Section Galerie -->
+  <url>
+    <loc>https://lebistrouille.fr/#galerie</loc>
+    <lastmod>2025-10-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  
+  <!-- Section Événements -->
+  <url>
+    <loc>https://lebistrouille.fr/#evenements</loc>
+    <lastmod>2025-10-28</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  
+  <!-- Section Contact -->
+  <url>
+    <loc>https://lebistrouille.fr/#contact</loc>
+    <lastmod>2025-10-28</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+</urlset>
