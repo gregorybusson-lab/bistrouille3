@@ -1,0 +1,9 @@
+# robots.txt pour Le Bistrouille
+# https://lebistrouille.fr
+
+# Autoriser tous les robots
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://lebistrouille.fr/sitemap.xml
